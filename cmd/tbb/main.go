@@ -1,8 +1,10 @@
 package main
 
 import (
+	"ed-henrique/the-blockchain-bar/cmd/tbb/balances"
+	"ed-henrique/the-blockchain-bar/cmd/tbb/tx"
+	"ed-henrique/the-blockchain-bar/utils"
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -23,9 +25,14 @@ var tbbCmd = &cobra.Command{
 	},
 }
 
+func init() {
+	tbbCmd.AddCommand(balances.BalancesCmd)
+	tbbCmd.AddCommand(tx.TxCmd)
+}
+
 func main() {
 	if err := tbbCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		utils.Err(err)
+		return
 	}
 }
