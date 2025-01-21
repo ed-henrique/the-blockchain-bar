@@ -33,7 +33,7 @@ func NewStateFromDisk() (*State, error) {
 	}
 
 	txDBFilePath := filepath.Join(cwd, "database", "tx.db")
-	f, err := os.OpenFile(txDBFilePath, os.O_APPEND|os.O_RDWR, 0600)
+	f, err := os.OpenFile(txDBFilePath, os.O_APPEND|os.O_RDWR|os.O_CREATE, 0600)
 	if err != nil {
 		return nil, err
 	}
